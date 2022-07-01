@@ -1,0 +1,30 @@
+version: "3.9"
+
+networks:
+  ezops-networks:
+    driver: bridge
+
+
+services:
+  api:
+    image: ninompit/app-ezops:v1
+    ports:
+      - 3000:3000
+    networks:
+      - ezops-networks
+    environment:
+      MONGODB_URI: "mongodb+srv://alexdevops:alexdevops123@cluster0.onflfy5.mongodb.net/simple-chat" 
+
+  mongodb:
+    image: mongo
+    ports:
+      - 27017:27017
+    networks:
+      - ezops-networks
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "alexdevops"
+      MONGO_INITDB_ROOT_PASSWORD: "alexdevops123"
+      
+
+     
+      

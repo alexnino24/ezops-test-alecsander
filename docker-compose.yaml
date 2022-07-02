@@ -9,7 +9,7 @@ services:
   api:
     image: ninompit/app-ezops:v1
     ports:
-      - 80:3000
+      - 3000:3000
     networks:
       - ezops-networks
     environment:

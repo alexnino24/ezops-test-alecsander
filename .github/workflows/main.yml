@@ -37,23 +37,27 @@ jobs:
             
      
    
-    runs-on: ubuntu-latest
-    steps:
     
-     - uses: actions/checkout@v3
-     - name: Build-image e BD
-       run: docker-compose build
 
-     - name: Create-DB
-       run: docker-compose up
-      # AWS Access Key ID
-         aws-access-key-id: 
-    # AWS Secret Access Key
-         aws-secret-access-key: 
-    # AWS Region
-         aws-region: 
-    # AWS Account ID
-         aws-account-id: 
+  CD:
+  
+    runs-on: ubuntu-latest
+
+   
+    steps:
+     
+      - name: actions/checkout@v3
+        run: docker-compose build
+      - name: Create Image e BD
+        run: docker-compose up -d 
+        
+          aws-access-key-id: 
+  
+          aws-secret-access-key: 
+    
+          aws-region: 
+    
+          aws-account-id: 
  
   
   

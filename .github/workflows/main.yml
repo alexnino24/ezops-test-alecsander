@@ -1,20 +1,19 @@
 name: CI - CD
 
-# Controls when the workflow will run
+
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
+  
   push:
     branches: [ "main" ]
   
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+
 jobs:
-  # This workflow contains a single job called "build"
+
   CI:
-    # The type of runner that the job will run on
+  
     runs-on: ubuntu-latest
 
    
@@ -31,8 +30,30 @@ jobs:
         uses: docker/build-push-action@v3.0.0
         with:
           file: ./src/Dockerfile
-          context: ./src
+          context: ./Dockerfile
           push: true
           tags: | 
-            ninompit/kube-news:latest
-            ninompit/kube-news:${{github.run_number}}
+            ninompit/ninompit/app-ezops:v1
+            
+     
+   
+    runs-on: ubuntu-latest
+    steps:
+    
+     - uses: actions/checkout@v3
+     - name: Build-image e BD
+       run: docker-compose build
+
+     - name: Create-DB
+       run: docker-compose up
+      # AWS Access Key ID
+         aws-access-key-id: 
+    # AWS Secret Access Key
+         aws-secret-access-key: 
+    # AWS Region
+         aws-region: 
+    # AWS Account ID
+         aws-account-id: 
+ 
+  
+  

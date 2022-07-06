@@ -39,25 +39,5 @@ jobs:
    
     
 
-  CD:
-  
-    runs-on: ubuntu-latest
-
-   
-    steps:
-     
-      - name: actions/checkout@v3
-        run: docker-compose build
-      - name: Create Image e BD
-        run: docker-compose up -d 
-        
-          aws-access-key-id: 
-  
-          aws-secret-access-key: 
-    
-          aws-region: 
-    
-          aws-account-id: 
- 
   
   

@@ -30,7 +30,7 @@ jobs:
         uses: docker/build-push-action@v3.0.0
         with:
           file: ./src/Dockerfile
-          context: ./Dockerfile
+          context: ./src
           push: true
           tags: | 
             ninompit/ninompit/app-ezops:v1

@@ -33,7 +33,8 @@ jobs:
           context: ./src
           push: true
           tags: 
-            ninompit/ninompit/app-ezops:v1
+            ninompit/app-ezops:latest
+            ninompit/app-ezops:${{github.run_number}}
             
      
    

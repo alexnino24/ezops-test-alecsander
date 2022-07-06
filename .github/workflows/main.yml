@@ -44,15 +44,14 @@ jobs:
      - name: Docker pull from DockerHub
      - uses: actions/checkout@v3
        with:
-         host: 192.168.0.105
          username: ec2-user
          key: ${{secrets.PRIVATE_KEY}}
          envs: GITHUB_SHA
          script: |
-          docker login:
-          docker pull: ninompit/app-ezops:${{github.run_number}}
-          docker run -d --network ezops-network -p 27017:27017 --name mongodb -e MONGO_INITDB_ROOT_USERNAME=alexdevops -e MONGO_INITDB_ROOT_PASSWORD=alexdevops123 mongo 
-          docker run -d -p 3000:3000 -e MONGODB_URI=mongodb+srv://alexdevops:alexdevops123@cluster0.onflfy5.mongodb.net/simple-chat --network ezops-network ninompit/app-ezops:v1
+           docker login:
+           docker pull: ninompit/app-ezops:${{github.run_number}}
+           docker run -d --network ezops-network -p 27017:27017 --name mongodb -e MONGO_INITDB_ROOT_USERNAME=alexdevops -e MONGO_INITDB_ROOT_PASSWORD=alexdevops123 mongo 
+           docker run -d -p 3000:3000 -e MONGODB_URI=mongodb+srv://alexdevops:alexdevops123@cluster0.onflfy5.mongodb.net/simple-chat --network ezops-network ninompit/app-ezops:v1
  
             
      

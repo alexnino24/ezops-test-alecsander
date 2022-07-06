@@ -3,8 +3,9 @@ version: "3.9"
 networks:
   ezops-networks:
     driver: bridge
-
-
+ volumes:
+  mongo-volume:
+   
 services:
   api:
     image: ninompit/app-ezops:v1
@@ -17,6 +18,8 @@ services:
 
   mongodb:
     image: mongo
+    volumes:
+      - mongo-volume:/data/db
     ports:
       - 27017:27017
     networks:

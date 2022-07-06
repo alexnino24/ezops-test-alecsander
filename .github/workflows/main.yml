@@ -36,6 +36,13 @@ jobs:
             ninompit/app-ezops:latest
             ninompit/app-ezops:${{github.run_number}}
             
+  CD: 
+  
+    runs-on: ubuntu-latest
+
+   
+    steps:
+            
      
    
     

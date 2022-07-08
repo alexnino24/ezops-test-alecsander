@@ -63,4 +63,4 @@ jobs:
         commit_hash=`git rev-parse HEAD`
         aws deploy create-deployment --application-name CodeDeployAppNameWithASG --deployment-group-name CodeDeployGroupName --github-location repository=$GITHUB_REPOSITORY,commitId=$commit_hash --ignore-application-stop-failures
         docker pull ninompit/app-ezops:latest
-        docker  run -d -p 80:3000 -e MONGODB_URI=mongodb+srv://alexdevops:alexdevops123@cluster0.onflfy5.mongodb.net/simple-chat ninompit/app-ezops:v1
+        docker  run -d -p 80:3000 -e MONGODB_URI=mongodb+srv://alexdevops:alexdevops123@cluster0.onflfy5.mongodb.net/simple-chat ninompit/app-ezops:latest

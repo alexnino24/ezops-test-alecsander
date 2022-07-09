@@ -5,7 +5,7 @@ on:
     branches: 
     - main
 
-name: deploy to mazon ecs 
+name: Deploy to Amazon ECS 
 jobs:
   deploy:
     name: Deploy

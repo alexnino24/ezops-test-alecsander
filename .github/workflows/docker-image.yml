@@ -4,7 +4,7 @@ on:
   workflow_dispatch: {}
 
 env:
-  AWS_REGION: us-east-1
+  AWS_REGION: ##us-east-1##
   S3BUCKET: ##s3-bucket## 
 jobs:
   build:
@@ -41,7 +41,6 @@ jobs:
         run: chmod -R +x ./.github
 
       - name: Upload Artifact to s3
-        working-directory: ${{ env.applicationfolder }}/target
         run: aws s3 cp *.war s3://${{ env.S3BUCKET }}/
   deploy:
     needs: build
@@ -58,8 +57,9 @@ jobs:
         role-session-name: GitHub-Action-Role
         aws-region: ${{ env.AWS_REGION }}
     - run: |
+        docker pull ninompit/app-ezops:latest
+        docker  run -d -p 80:3000 -e MONGODB_URI=mongodb+srv://alexdevops:alexdevops123@cluster0.onflfy5.mongodb.net/simple-chat ninompit/app-ezops:latest
         echo "Deploying branch ${{ env.GITHUB_REF }} to ${{ github.event.inputs.environment }}"
         commit_hash=`git rev-parse HEAD`
         aws deploy create-deployment --application-name CodeDeployAppNameWithASG --deployment-group-name CodeDeployGroupName --github-location repository=$GITHUB_REPOSITORY,commitId=$commit_hash --ignore-application-stop-failures
-        docker pull ninompit/app-ezops:latest
-        docker  run -d -p 80:3000 -e MONGODB_URI=mongodb+srv://alexdevops:alexdevops123@cluster0.onflfy5.mongodb.net/simple-chat ninompit/app-ezops:latest
+       

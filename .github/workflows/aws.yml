@@ -52,5 +52,5 @@ jobs:
       uses: aws-actions/amazon-ecs-deploy-task-definition@v1
       with:
         task-definition: ${{ steps.task-def.outputs.task-definition }}
-        cluster: aws-docker-sample
+        cluster: test-ezops
         wait-for-service-stability: true

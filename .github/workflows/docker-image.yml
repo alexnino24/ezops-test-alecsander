@@ -1,10 +1,11 @@
-name: Build e Deploy 
+
 
 on:
   push:
     branches: 
     - main
 
+name: deploy to mazon ecs 
 jobs:
   deploy:
     name: Deploy

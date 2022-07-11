@@ -3,7 +3,7 @@ FROM nginx:alpine
 LABEL MAINTAINER="Alecsander"
 
 # copy static website index.html into nginx default html folder
-COPY  . /usr/share/nginx/html
+COPY  index.html/usr/share/nginx/html
 
 # export port 80
 EXPOSE 80

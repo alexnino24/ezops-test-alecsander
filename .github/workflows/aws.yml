@@ -1,4 +1,4 @@
-name: Deploy no Amazon EC2
+name: Deploy em Produção
 
 on:
 

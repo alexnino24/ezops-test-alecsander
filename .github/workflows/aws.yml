@@ -33,6 +33,7 @@ jobs:
       run: |
         aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/e5b3z2p4
         docker build -t ezops .
+        docker tag ezops:latest public.ecr.aws/e5b3z2p4/ezops:latest
         docker push public.ecr.aws/e5b3z2p4/ezops:latest
         echo "::set-output name=image::public.ecr.aws/e5b3z2p4/ezops:latest"
        

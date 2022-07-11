@@ -1,7 +1,7 @@
-FROM node:16.15.1
+FROM node:latest
 WORKDIR /app
 COPY package*.json ./
-RUN npm install
+RUN npm install --silent
 COPY . .
 EXPOSE 80
 CMD ["node", "server.js"]

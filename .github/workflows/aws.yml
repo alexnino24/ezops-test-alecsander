@@ -29,14 +29,14 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v1
 
     - name: Fazendo o build da imagem e realizando o push no Amazon ECR
-      id: build-image
-      
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: ezops
+        IMAGE_TAG: ${{ github.sha }}
       run: |
-        aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/e5b3z2p4
-        docker build -t ezops .
-        docker tag ezops:latest public.ecr.aws/e5b3z2p4/ezops:latest
-        docker push public.ecr.aws/e5b3z2p4/ezops:latest
-        
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
        
     - name: Preenchendo o novo ID da imagem na definição de tarefa do Amazon ECS
       id: task-def

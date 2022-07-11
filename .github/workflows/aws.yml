@@ -36,13 +36,14 @@ jobs:
         docker build -t ezops .
         docker tag ezops:latest public.ecr.aws/e5b3z2p4/ezops:latest
         docker push public.ecr.aws/e5b3z2p4/ezops:latest
+        
        
     - name: Preenchendo o novo ID da imagem na definição de tarefa do Amazon ECS
       id: task-def
       uses: aws-actions/amazon-ecs-render-task-definition@v1
       with:
         task-definition: task-definition.json
-        container-name: app-ezops
+        container-name: ezops
         image: ${{ steps.build-image.outputs.image }}
 
     - name: Deploy Amazon ECS task definition
